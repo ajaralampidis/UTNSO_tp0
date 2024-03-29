@@ -69,8 +69,6 @@ int main(void)
 
 	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
 	// Proximamente
-
-
 }
 
 t_log* iniciar_logger(void)
@@ -125,11 +123,11 @@ void paquete(int conexion)
 	while (1) {
         leido = readline("> ");
 		agregar_a_paquete(paquete, leido, strlen(leido) + 1);
-        free(leido);
 
         if (!strncmp(leido, "", 1)) {
             break;
         }
+        free(leido);
 
     }
 	enviar_paquete(paquete, conexion);
@@ -146,4 +144,6 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 	  con las funciones de las commons y del TP mencionadas en el enunciado */
 	  	log_destroy(logger);
 		liberar_conexion(conexion);
+		config_destroy(config);
+		
 }
